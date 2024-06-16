@@ -49,7 +49,7 @@ fn main() {
 
         match stream.read(&mut buffer) {
             Ok(size) => {
-                request.push_str(String::from_utf16_lossy(&buffer[..size]).as_ref());
+                request.push_str(String::from_utf8_lossy(&buffer[..size]).as_ref());
 
                 let (status_line, content) = match &*request {
                     r if r.starts_with("POST/users") => handle_post_request(r),
